@@ -8,7 +8,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Stopped using YCM because clunky
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'maralla/completor.vim'
- Plugin 'vim-syntastic/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'nvie/vim-flake8'
 " File directory traverser
 Plugin 'scrooloose/nerdtree'
@@ -100,7 +100,7 @@ nnoremap <leader>j Lzt
 nnoremap <leader>k Hzb
 nnoremap <leader>h :bp<CR>
 nnoremap <leader>l :bn<CR>
-nnoremap <leader>b $A{<CR>}<ESC>O
+nnoremap <leader>b $A {<CR>}<ESC>O
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>t :TlistToggle<CR>
 nnoremap <leader>f :lopen<CR>
