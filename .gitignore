@@ -1,3 +1,5 @@
 backup/*
 .ssh/*
 .vim/bundle/*
+tag
+tags

@@ -4,12 +4,13 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-" Code completion is the best thing ever
-" Stopped using YCM because clunky
+" Code completion and formatting
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'maralla/completor.vim'
+" Plugin 'davidhalter/jedi-vim'
 Plugin 'w0rp/ale'
 Plugin 'nvie/vim-flake8'
+Plugin 'psf/black'
 " File directory traverser
 Plugin 'scrooloose/nerdtree'
 " Adds useful info in a status bar at the bottom of the window
@@ -18,6 +19,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'rhysd/vim-clang-format'
 " For traversing function definitions etc
 Plugin 'taglist.vim'
+Plugin 'ludovicchabant/vim-gutentags'
 " comments
 Plugin 'tpope/vim-commentary'
 " LaTeX
@@ -25,6 +27,16 @@ Plugin 'xuhdev/vim-latex-live-preview'
 " Plugin 'vim-latex/vim-latex'
 " Hex colors
 Plugin 'chrisbra/colorizer'
+" tmux related
+Plugin 'christoomey/vim-tmux-navigator'
+" note taking
+Plugin 'vimwiki/vimwiki'
+" colors
+Plugin 'flazz/vim-colorschemes'
+" toml syntax
+Plugin 'cespare/vim-toml'
+" better syntax highlighting
+Plugin 'sheerun/vim-polyglot'
 
 call vundle#end()
 filetype plugin indent on "enable indents
@@ -46,18 +58,28 @@ set foldlevelstart=10
 set foldmethod=indent
 set showcmd
 
-set t_Co=256
 syntax enable "enables syntax colors
-colorscheme deus "changes the syntax colors
+set t_Co=256
+
 set background=dark
+
+colorscheme onedark "changes the syntax colors
+
+" hi CursorLine ctermbg=Black cterm=NONE
+" hi CursorLineNr ctermbg=Black cterm=NONE
+
+set statusline+=%{gutentags#statusline()}
 
 let mapleader=","
 let NERDTreeShowLineNumbers=1
-let g:airline_theme='deus'
+let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1
 
 " Taglist
 let Tlist_GainFocus_On_ToggleOpen = 1
+
+" Completor
+let g:completor_python_binary = '/usr/local/bin/python3'
 
 " Syntastic
 let g:syntastic_cpp_checkers = ['clang_check', 'gcc', 'cppcheck']
@@ -77,6 +99,26 @@ let g:livepreview_previewer='mupdf'
 
 " Color hex codes
 let g:colorizer_auto_filetype='css,html'
+
+" Change notetaking to md
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown',
+            \ 'ext': '.md', 'custom_wiki2html': 'vimwiki_markdown',
+            \ 'template_ext': '.tpl', 'template_path': '~/vimwiki/templates/',
+            \ 'template_default': 'default', 'path_html': '~/vimwiki/site_html'}]
+let g:vimwiki_global_ext = 0
+
+" .conf files look like dosini files
+au BufEnter,BufRead *.conf setf dosini
+
+nmap <leader>nw <Plug>VimwikiIndex
+nmap <leader>nt <Plug>VimwikiTabIndex
+nmap <leader>ns <Plug>VimwikiUISelect
+nmap <leader>ni <Plug>VimwikiDiaryIndex
+nmap <leader>n<leader>n <Plug>VimwikiMakeDiaryNote
+nmap <leader>n<leader>t <Plug>VimwikiTabMakeDiaryNote
+nmap <leader>n<leader>y <Plug>VimwikiMakeYesterdayDiaryNote
+nmap <leader>n<leader>m <Plug>VimwikiMakeTomorrowDiaryNote
+nmap <leader>n<leader>i <Plug>VimwikiDiaryGenerateLinks
 
 inoremap <C-J> <ESC><C-W><C-J>
 inoremap <C-K> <ESC><C-W><C-K>
@@ -105,4 +147,3 @@ nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>t :TlistToggle<CR>
 nnoremap <leader>f :lopen<CR>
 nnoremap <leader>g :lclose<CR>
-
