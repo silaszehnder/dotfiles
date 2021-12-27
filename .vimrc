@@ -1,40 +1,60 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
+" Disable polyglot for markdown
+let g:polyglot_diabled = ['markdown', 'vimwiki']
+" Disable reindenting polyglot
+autocmd BufEnter * set indentexpr=
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-" Code completion and formatting
-" Plugin 'Valloric/YouCompleteMe'
+
+" code completion and formatting
 Plugin 'maralla/completor.vim'
 " Plugin 'davidhalter/jedi-vim'
 Plugin 'w0rp/ale'
 Plugin 'nvie/vim-flake8'
 Plugin 'psf/black'
+Plugin 'rhysd/vim-clang-format'
+
 " File directory traverser
 Plugin 'scrooloose/nerdtree'
+
 " Adds useful info in a status bar at the bottom of the window
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'rhysd/vim-clang-format'
+
 " For traversing function definitions etc
 Plugin 'taglist.vim'
 Plugin 'ludovicchabant/vim-gutentags'
+
 " comments
 Plugin 'tpope/vim-commentary'
+
 " LaTeX
 Plugin 'xuhdev/vim-latex-live-preview'
 " Plugin 'vim-latex/vim-latex'
+
 " Hex colors
 Plugin 'chrisbra/colorizer'
+
 " tmux related
 Plugin 'christoomey/vim-tmux-navigator'
+
 " note taking
 Plugin 'vimwiki/vimwiki'
+
 " colors
 Plugin 'flazz/vim-colorschemes'
+
 " toml syntax
 Plugin 'cespare/vim-toml'
+
+" jinja2 syntax
+Plugin 'glench/vim-jinja2-syntax'
+
 " better syntax highlighting
 Plugin 'sheerun/vim-polyglot'
 
@@ -62,15 +82,14 @@ syntax enable "enables syntax colors
 set t_Co=256
 
 set background=dark
-
 colorscheme onedark "changes the syntax colors
 
+" Alternative cursorline for default colorscheme
 " hi CursorLine ctermbg=Black cterm=NONE
 " hi CursorLineNr ctermbg=Black cterm=NONE
 
 set statusline+=%{gutentags#statusline()}
 
-let mapleader=","
 let NERDTreeShowLineNumbers=1
 let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1
@@ -110,6 +129,9 @@ let g:vimwiki_global_ext = 0
 " .conf files look like dosini files
 au BufEnter,BufRead *.conf setf dosini
 
+let mapleader=","
+
+" Vimwiki
 nmap <leader>nw <Plug>VimwikiIndex
 nmap <leader>nt <Plug>VimwikiTabIndex
 nmap <leader>ns <Plug>VimwikiUISelect
@@ -120,14 +142,21 @@ nmap <leader>n<leader>y <Plug>VimwikiMakeYesterdayDiaryNote
 nmap <leader>n<leader>m <Plug>VimwikiMakeTomorrowDiaryNote
 nmap <leader>n<leader>i <Plug>VimwikiDiaryGenerateLinks
 
+" inoremap
 inoremap <C-J> <ESC><C-W><C-J>
 inoremap <C-K> <ESC><C-W><C-K>
 inoremap <C-L> <ESC><C-W><C-L>
 inoremap <C-H> <ESC><C-W><C-H>
 inoremap jj <ESC>
 
-" Makes for a much smoother experience switching between buffers
-" Sooo much better
+" tnoremap
+tnoremap <C-J> <C-W><C-J>
+tnoremap <C-K> <C-W><C-K>
+tnoremap <C-L> <C-W><C-L>
+tnoremap <C-H> <C-W><C-H>
+tnoremap <leader>n <C-W>N
+
+" nnoremap
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
