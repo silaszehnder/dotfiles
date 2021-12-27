@@ -1,0 +1,12 @@
+input type:touchpad {
+      dwt enabled
+      tap disabled
+      natural_scroll enabled
+      scroll_factor 1.2
+      pointer_accel 0.2
+}
+
+input type:pointer {
+      dwt enabled
+      scroll_factor 1.5
+}

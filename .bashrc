@@ -55,3 +55,6 @@ export VIMWIKI_MARKDOWN_EXTENSIONS="toc"
 #GIT_PROMPT_ONLY_IN_REPO=1
 #source ~/.bash-git-prompt/gitprompt.sh
 
+# X1 tablet (wayland) specific
+# alias webcam="ffplay -f v4l2 -video_size 640x480 -i /dev/video16"
+# alias capturewebcam='ffmpeg -f v4l2 -i /dev/video16 -map 0 -c:v libx264 -f tee "capture.mp4|[f=nut]pipe:" | ffplay -an -probesize 32 -sync ext pipe:'

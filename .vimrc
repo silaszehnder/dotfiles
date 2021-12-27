@@ -120,7 +120,7 @@ let g:livepreview_previewer='mupdf'
 let g:colorizer_auto_filetype='css,html'
 
 " Change notetaking to md
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown',
+let g:vimwiki_list = [{'path': '~/vimwiki-personal/', 'syntax': 'markdown',
             \ 'ext': '.md', 'custom_wiki2html': 'vimwiki_markdown',
             \ 'template_ext': '.tpl', 'template_path': '~/vimwiki/templates/',
             \ 'template_default': 'default', 'path_html': '~/vimwiki/site_html'}]
@@ -176,3 +176,8 @@ nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>t :TlistToggle<CR>
 nnoremap <leader>f :lopen<CR>
 nnoremap <leader>g :lclose<CR>
+
+" Silly wayland clipboard stuff
+" xnoremap "+y y:call system("wl-copy", @")<cr>
+" nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
+" nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
