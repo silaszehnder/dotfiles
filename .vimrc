@@ -47,6 +47,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vimwiki/vimwiki'
 
 " colors
+Plugin 'joshdick/onedark.vim'
 Plugin 'flazz/vim-colorschemes'
 
 " toml syntax
@@ -82,7 +83,7 @@ syntax enable "enables syntax colors
 set t_Co=256
 
 set background=dark
-colorscheme onedark "changes the syntax colors
+colorscheme onedark
 
 " Alternative cursorline for default colorscheme
 " hi CursorLine ctermbg=Black cterm=NONE
