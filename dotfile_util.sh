@@ -1,32 +1,25 @@
 #!/bin/bash
-###
-# .copier.sh
 # This script copies all the dotfiles and vim colors into this folder
 # this folder can then be pulled and dotfiles can be manually be installed
 # on a comp-by-comp basis
 
-### Variables
+set -x
 
-files=".bash_profile .bashrc .vimrc .vim .tmux.conf"
-backup=backup
-dir=~/dotfiles
+FILES=".bash_profile .bashrc .vimrc .vim .tmux.conf"
+BACKUP_DIR=~/dotfile-backup
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-###
+mkdir -p $BACKUP_DIR
 
-#create backup of current dotfiles
-echo "Creating backup folder for dotfiles currently in the home directory"
-rm -rf $backup
-mkdir -p $backup
-echo "backup folder created"
-
-for file in $files; do
-    echo "move ~/$file to backup folder $backup/"
-    mv ~/$file $dir/$backup/
-    echo "Creating symlink from $dir/$file to ~/$file"
-    ln -si $dir/$file ~/$file
+for FILE in $FILES; do
+    mv ~/$FILE $BACKUP_DIR/
+    ln -si $SCRIPT_DIR/$FILE ~/$FILE
 done
 
-echo "source ~/.bashrc and for convenience"
-source ~/.bashrc
+# Install Vundle (Vim plugin manager)
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-echo "Backup and linking complete!"
+# Install tpm (Tmux Plugin Manager)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+source ~/.bashrc
