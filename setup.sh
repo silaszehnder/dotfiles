@@ -22,4 +22,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Install tpm (Tmux Plugin Manager)
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+# GNOME terminal one-dark
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/denysdovhan/gnome-terminal-one/master/one-dark.sh)"
+
 source ~/.bashrc
