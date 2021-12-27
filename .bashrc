@@ -46,9 +46,13 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 # Add custom scripts to path
 export PATH=~/.scripts:$PATH
 
+# Add local bin to PATH
+export PATH=~/.local/bin:$PATH
+
 # Add esp32 toolchain to path
 export PATH="$PATH:$HOME/esp/xtensa-esp32-elf/bin"
 export IDF_PATH=~/esp/esp-idf
+
 # vimwiki
 export VIMWIKI_MARKDOWN_EXTENSIONS="toc"
 
