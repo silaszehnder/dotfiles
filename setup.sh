@@ -1,11 +1,15 @@
 #!/bin/bash
-# This script copies all the dotfiles and vim colors into this folder
-# this folder can then be pulled and dotfiles can be manually be installed
-# on a comp-by-comp basis
+# setup.sh backs up existing home directory dotfiles into a specified directory
+# and creates symlinks to the common dotfiles in this repo to the home directory.
+# It also attempts to install utilities that I would manually install later
+# anyway.
+# More env-specific dotfiles and configs, like i3 and rc.conf, are not automatically
+# linked as they may not be needed in every environment. They can be added to
+# the FILES list if symlinks are desired.
 
 set -x
 
-FILES=".bash_profile .bashrc .vimrc .vim .tmux.conf"
+FILES=".bash_profile .bashrc .scripts .vimrc .vim .tmux.conf"
 BACKUP_DIR=~/dotfile-backup
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
