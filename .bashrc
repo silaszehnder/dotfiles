@@ -1,23 +1,31 @@
+# General
+
+alias ebrc="vim $HOME/.bashrc"
+alias evrc="vim $HOME/.vimrc"
 alias fd=fd_decide
 alias ls="ls -GF"
-alias ebrc="vim $HOME/.bashrc"
 alias sbrc="source ~/.bashrc"
-alias evrc="vim $HOME/.vimrc"
-alias gits="git status"
+
+# Git
+
 alias gita="git add -A"
 alias gitcm="git commit -m"
 alias gitd="git diff"
 alias gitg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias gits="git status"
 alias grep="grep --color=auto"
 alias gg="git grep"
+
+# Fun
 
 alias weatheraa='curl http://wttr.in/ann_arbor?Tn1'
 alias weather3aa='curl http://wttr.in/ann_arbor?Tn | less'
 alias weather='curl http://wttr.in/broomfield?Tn1'
 alias weather3='curl http://wttr.in/broomfield?Tn | less'
-
 alias screenfetch="screenfetch -E"
 alias parrot="terminal-parrot"
+
+# Functions
 
 function fd_decide {
     if ! [[ -z $(type -p \fd) ]]; then
@@ -49,6 +57,8 @@ function parse_git_branch {
 PROMPT_COMMAND=parse_git_branch
 PS_GIT="$RED\$PS_BRANCH"
 
+# Exports
+
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\t:\[\033[33;1m\]\w\[\033[m\] ${PS_GIT}\n${RESET}\$ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
@@ -68,9 +78,6 @@ export IDF_PATH=~/esp/esp-idf
 
 # vimwiki
 export VIMWIKI_MARKDOWN_EXTENSIONS="toc"
-
-#GIT_PROMPT_ONLY_IN_REPO=1
-#source ~/.bash-git-prompt/gitprompt.sh
 
 # X1 tablet (wayland) specific
 # alias webcam="ffplay -f v4l2 -video_size 640x480 -i /dev/video16"
