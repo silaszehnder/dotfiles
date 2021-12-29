@@ -1,3 +1,4 @@
+alias fd=fd_decide
 alias ls="ls -GF"
 alias ebrc="vim $HOME/.bashrc"
 alias sbrc="source ~/.bashrc"
@@ -18,6 +19,17 @@ alias weather3='curl http://wttr.in/broomfield?Tn | less'
 alias screenfetch="screenfetch -E"
 alias parrot="terminal-parrot"
 
+function fd_decide {
+    if ! [[ -z $(type -p \fd) ]]; then
+        \fd $@
+    elif ! [[ -z $(type -p \fdfind) ]]; then
+        fdfind $@
+    else
+        echo "Need to install some sort of fd"
+    fi
+}
+
+
 RESET="\[\033[0m\]"
 RED="\[\033[0;31m\]"
 
@@ -30,11 +42,12 @@ function parse_git_branch {
 			PS_BRANCH="(fossil $(fossil status|awk '/tags/{print $2}')) "
 			return
 		fi
-			ref=$(git symbolic-ref HEAD 2> /dev/null) || return          
+			ref=$(git symbolic-ref HEAD 2> /dev/null) || return
 			PS_BRANCH="(git ${ref#refs/heads/}) "
 }
+
 PROMPT_COMMAND=parse_git_branch
-PS_GIT="$RED\$PS_BRANCH" 
+PS_GIT="$RED\$PS_BRANCH"
 
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\t:\[\033[33;1m\]\w\[\033[m\] ${PS_GIT}\n${RESET}\$ "
 export CLICOLOR=1
