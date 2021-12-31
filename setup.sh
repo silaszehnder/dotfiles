@@ -9,7 +9,7 @@
 
 set -x
 
-FILES=".bash_profile .bashrc .scripts .vimrc .vim .tmux.conf"
+FILES=".bash_profile .bashrc .gitconfig .scripts .vimrc .vim .tmux.conf"
 BACKUP_DIR=~/dotfile-backup
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
@@ -30,3 +30,5 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/denysdovhan/gnome-terminal-one/master/one-dark.sh)"
 
 source ~/.bashrc
+
+set +x
