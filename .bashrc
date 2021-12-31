@@ -83,7 +83,7 @@ export VIMWIKI_MARKDOWN_EXTENSIONS="toc"
 # alias capturewebcam='ffmpeg -f v4l2 -i /dev/video16 -map 0 -c:v libx264 -f tee "capture.mp4|[f=nut]pipe:" | ffplay -an -probesize 32 -sync ext pipe:'
 
 # Load our other dotfiles.
-for file in ~/.{aliases_private}; do
+for file in ~/.{aliases,aliases_private}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
