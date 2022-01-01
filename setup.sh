@@ -21,13 +21,19 @@ for FILE in $FILES; do
 done
 
 # Install Vundle (Vim plugin manager)
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [[ ! -e ~/.vim/bundle/Vundle.vim ]]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
 
 # Install tpm (Tmux Plugin Manager)
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [[ ! -e ~/.tmux/plugins/tpm ]]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 # GNOME terminal one-dark
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/denysdovhan/gnome-terminal-one/master/one-dark.sh)"
+if [[ -n $(echo $XDG_DATA_DIRS | grep -o gnome) ]]; then
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/denysdovhan/gnome-terminal-one/master/one-dark.sh)"
+fi
 
 source ~/.bashrc
 
