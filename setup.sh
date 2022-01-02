@@ -9,7 +9,7 @@
 
 set -x
 
-FILES=".bash_profile .bashrc .gitconfig .scripts .vimrc .vim .tmux.conf"
+FILES=".aliases .bash_profile .bashrc .gitconfig .scripts .vimrc .vim .tmux.conf"
 BACKUP_DIR=~/dotfile-backup
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
