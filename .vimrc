@@ -13,57 +13,41 @@ Plugin 'VundleVim/Vundle.vim'
 
 " code completion and formatting
 Plugin 'maralla/completor.vim'
-
 " Asynchronous Lint Engine
 Plugin 'dense-analysis/ale'
-
 " Run flake8 on python files
 Plugin 'nvie/vim-flake8'
-
 " Python black plugin
 Plugin 'psf/black'
-
-" clang-format
-" Plugin 'rhysd/vim-clang-format'
-
 " File directory traverser
 Plugin 'scrooloose/nerdtree'
-
 " Adds useful info in a status bar at the bottom of the window
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
 " For traversing function definitions etc
 Plugin 'taglist.vim'
-
 " tag file autogeneration
 Plugin 'ludovicchabant/vim-gutentags'
-
 " comments with `gcc`
 Plugin 'tpope/vim-commentary'
-
 " LaTeX
 Plugin 'xuhdev/vim-latex-live-preview'
 " Plugin 'vim-latex/vim-latex'
-
 " Hex colors
 Plugin 'chrisbra/colorizer'
-
 " Move between tmux and vim panes
 Plugin 'christoomey/vim-tmux-navigator'
-
 " note taking
 Plugin 'vimwiki/vimwiki'
-
 " colors
 Plugin 'joshdick/onedark.vim'
 Plugin 'flazz/vim-colorschemes'
-
 " jinja2 syntax
 Plugin 'glench/vim-jinja2-syntax'
-
 " Language pack
 Plugin 'sheerun/vim-polyglot'
+" clang-format
+" Plugin 'rhysd/vim-clang-format'
 
 call vundle#end()
 filetype plugin indent on "enable indents
@@ -97,32 +81,35 @@ colorscheme onedark
 
 " vim-gutentags
 set statusline+=%{gutentags#statusline()}
-
 "NERDTree
 let NERDTreeShowLineNumbers=1
-
 " airline
 let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1
-
 " Taglist
 let Tlist_GainFocus_On_ToggleOpen = 1
-
 " Completor
 let g:completor_python_binary = '/usr/local/bin/python3'
-
 " flake8 autorun on saving py file
 autocmd BufWritePost *.py call flake8#Flake8()
-
 " black autorun on saving py file
 autocmd BufWritePost *.py call black#Black()
-
 " vim-polyglot/markdown
 let g:vim_markdown_conceal = 0
-
+" vim-polyglot/ansible-vim
+au BufRead,BufNewFile */tasks/*.y*ml set filetype=yaml.ansible
 " vimwiki conceal
 let g:vimwiki_conceallevel = 0
-
+" LaTeX preview with mupdf
+let g:livepreview_previewer='mupdf'
+" Color hex codes
+let g:colorizer_auto_filetype='css,html'
+" Change notetaking to md
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown',
+            \ 'ext': '.md', 'custom_wiki2html': 'vimwiki_markdown',
+            \ 'template_ext': '.tpl', 'template_path': '~/vimwiki/templates/',
+            \ 'template_default': 'default', 'path_html': '~/vimwiki/site_html'}]
+let g:vimwiki_global_ext = 0
 " Syntastic
 let g:syntastic_cpp_checkers = ['clang_check', 'gcc', 'cppcheck']
 let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall"
@@ -135,19 +122,6 @@ let g:syntastic_check_on_wq = 0
 
 " vim-clang-format
 let g:clang_format#detect_style_file = 1
-
-" LaTeX preview with mupdf
-let g:livepreview_previewer='mupdf'
-
-" Color hex codes
-let g:colorizer_auto_filetype='css,html'
-
-" Change notetaking to md
-let g:vimwiki_list = [{'path': '~/vimwiki-personal/', 'syntax': 'markdown',
-            \ 'ext': '.md', 'custom_wiki2html': 'vimwiki_markdown',
-            \ 'template_ext': '.tpl', 'template_path': '~/vimwiki/templates/',
-            \ 'template_default': 'default', 'path_html': '~/vimwiki/site_html'}]
-let g:vimwiki_global_ext = 0
 
 " .conf files look like dosini files
 au BufEnter,BufRead *.conf setf dosini
