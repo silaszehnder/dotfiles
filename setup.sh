@@ -10,7 +10,9 @@
 set -x
 
 FILES=".aliases .bash_profile .bashrc .gitconfig .scripts .vimrc .vim .tmux.conf"
-BACKUP_DIR=~/dotfile-backup
+BACKUP_ROOT=~/.dotfile-backup
+BACKUP_SUBDIR=$(date +%F-%H-%M-%S)
+BACKUP_DIR=$BACKUP_ROOT/$BACKUP_SUBDIR
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 mkdir -p $BACKUP_DIR
