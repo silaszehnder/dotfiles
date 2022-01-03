@@ -117,6 +117,12 @@ autocmd BufWritePost *.py call flake8#Flake8()
 " black autorun on saving py file
 autocmd BufWritePost *.py call black#Black()
 
+" vim-polyglot/markdown
+let g:vim_markdown_conceal = 0
+
+" vimwiki conceal
+let g:vimwiki_conceallevel = 0
+
 " Syntastic
 let g:syntastic_cpp_checkers = ['clang_check', 'gcc', 'cppcheck']
 let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall"
