@@ -13,11 +13,18 @@ Plugin 'VundleVim/Vundle.vim'
 
 " code completion and formatting
 Plugin 'maralla/completor.vim'
-" Plugin 'davidhalter/jedi-vim'
-Plugin 'w0rp/ale'
+
+" Asynchronous Lint Engine
+Plugin 'dense-analysis/ale'
+
+" Run flake8 on python files
 Plugin 'nvie/vim-flake8'
+
+" Python black plugin
 Plugin 'psf/black'
-Plugin 'rhysd/vim-clang-format'
+
+" clang-format
+" Plugin 'rhysd/vim-clang-format'
 
 " File directory traverser
 Plugin 'scrooloose/nerdtree'
@@ -28,9 +35,11 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " For traversing function definitions etc
 Plugin 'taglist.vim'
+
+" tag file autogeneration
 Plugin 'ludovicchabant/vim-gutentags'
 
-" comments
+" comments with `gcc`
 Plugin 'tpope/vim-commentary'
 
 " LaTeX
@@ -40,7 +49,7 @@ Plugin 'xuhdev/vim-latex-live-preview'
 " Hex colors
 Plugin 'chrisbra/colorizer'
 
-" tmux related
+" Move between tmux and vim panes
 Plugin 'christoomey/vim-tmux-navigator'
 
 " note taking
@@ -50,13 +59,10 @@ Plugin 'vimwiki/vimwiki'
 Plugin 'joshdick/onedark.vim'
 Plugin 'flazz/vim-colorschemes'
 
-" toml syntax
-Plugin 'cespare/vim-toml'
-
 " jinja2 syntax
 Plugin 'glench/vim-jinja2-syntax'
 
-" better syntax highlighting
+" Language pack
 Plugin 'sheerun/vim-polyglot'
 
 call vundle#end()
@@ -89,9 +95,13 @@ colorscheme onedark
 " hi CursorLine ctermbg=Black cterm=NONE
 " hi CursorLineNr ctermbg=Black cterm=NONE
 
+" vim-gutentags
 set statusline+=%{gutentags#statusline()}
 
+"NERDTree
 let NERDTreeShowLineNumbers=1
+
+" airline
 let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1
 
@@ -100,6 +110,12 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 
 " Completor
 let g:completor_python_binary = '/usr/local/bin/python3'
+
+" flake8 autorun on saving py file
+autocmd BufWritePost *.py call flake8#Flake8()
+
+" black autorun on saving py file
+autocmd BufWritePost *.py call black#Black()
 
 " Syntastic
 let g:syntastic_cpp_checkers = ['clang_check', 'gcc', 'cppcheck']
@@ -111,7 +127,7 @@ let g:syntastic_loc_list_height = 5
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Vim-clang-format
+" vim-clang-format
 let g:clang_format#detect_style_file = 1
 
 " LaTeX preview with mupdf
