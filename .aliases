@@ -27,9 +27,9 @@ alias screenfetch="screenfetch -E"
 alias parrot="terminal-parrot"
 
 function fd_decide {
-    if ! [[ -z $(type -p \fd) ]]; then
+    if ! [[ -z $(which \fd) ]]; then
         \fd $@
-    elif ! [[ -z $(type -p \fdfind) ]]; then
+    elif ! [[ -z $(which \fdfind) ]]; then
         fdfind $@
     else
         echo "Need to install some sort of fd"
