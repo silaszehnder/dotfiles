@@ -92,8 +92,6 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let g:completor_python_binary = '/usr/local/bin/python3'
 " flake8 autorun on saving py file
 autocmd BufWritePost *.py call flake8#Flake8()
-" black autorun on saving py file
-autocmd BufWritePost *.py call black#Black()
 " vim-polyglot/markdown
 let g:vim_markdown_conceal = 0
 " vim-polyglot/ansible-vim
@@ -168,7 +166,7 @@ nnoremap <leader>j Lzt
 nnoremap <leader>k Hzb
 nnoremap <leader>h :bp<CR>
 nnoremap <leader>l :bn<CR>
-nnoremap <leader>b $A {<CR>}<ESC>O
+nnoremap <leader>b :Black<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>t :TlistToggle<CR>
 nnoremap <leader>f :lopen<CR>

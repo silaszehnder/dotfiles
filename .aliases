@@ -8,7 +8,7 @@ alias sbrc="source ~/.bashrc"
 
 # Git
 
-alias gcp='git config user.name "Silas Zehnder" && git config user.email "silaszehnder@gmail.com"'
+alias gconfp='git config user.name "Silas Zehnder" && git config user.email "silaszehnder@gmail.com"'
 alias gita="git add -A"
 alias gitcm="git commit -m"
 alias gitd="git diff"
