@@ -1,9 +1,14 @@
 #!/bin/bash
 # Download audio from a YouTube playlist.
 
-MUSIC_DIR=$HOME/Music/
-ARCHIVE_FILE=$MUSIC_DIR/music-playlist.txt
-# Playlist needs to be unlisted to work correctly
-PLAYLIST_LINK="PLAYLIST_LINK_HERE"
+_script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-youtube-dl --extract-audio --download-archive $ARCHIVE_FILE --audio-format mp3 $PLAYLIST_LINK
+# Playlist needs to be unlisted to work correctly
+_playlist_link_filename=playlist-link.txt
+_playlist_link=$(cat $_script_dir/$_playlist_link_filename)
+
+_music_dir=$HOME/Music/yt-music
+_archive_file=$_music_dir/music-playlist.txt
+
+
+youtube-dl --extract-audio --download-archive $_archive_file --audio-format mp3 $_playlist_link -o "$_music_dir/%(title)s.%(ext)s"

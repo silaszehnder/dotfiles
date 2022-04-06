@@ -34,6 +34,19 @@ export PATH=~/.local/bin:$PATH
 export PATH="$PATH:$HOME/esp/xtensa-esp32-elf/bin"
 export IDF_PATH=~/esp/esp-idf
 
+# Mac specific
+if [ $(uname) == 'Darwin' ]; then
+    # Homebrew-related
+    export HOMEBREW_PREFIX="/opt/homebrew"
+    export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+    export HOMEBREW_REPOSITORY="/opt/homebrew"
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
+    export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
+    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
+
+    export BASH_SILENCE_DEPRECATION_WARNING=1
+fi
+
 # vimwiki
 export VIMWIKI_MARKDOWN_EXTENSIONS="toc"
 
