@@ -30,6 +30,9 @@ export PATH=~/.scripts:$PATH
 # Add local bin to PATH
 export PATH=~/.local/bin:$PATH
 
+# Add local go bins to PATH
+export PATH=$PATH:/usr/local/go/bin
+
 # Add esp32 toolchain to path
 export PATH="$PATH:$HOME/esp/xtensa-esp32-elf/bin"
 export IDF_PATH=~/esp/esp-idf
@@ -63,7 +66,8 @@ unset file
 # Use this file for tasks/reminders/etc.
 [ -e ~/.motd ] && cat ~/.motd
 
-
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
+
+eval "$(pyenv init -)"
