@@ -2,7 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Disable polyglot for markdown
-let g:polyglot_diabled = ['markdown', 'vimwiki']
+let g:polyglot_disabled = ['markdown', 'vimwiki']
 " Disable reindenting polyglot
 autocmd BufEnter * set indentexpr=
 
@@ -81,6 +81,7 @@ colorscheme onedark
 
 " vim-gutentags
 set statusline+=%{gutentags#statusline()}
+let g:gutentags_project_root = ['.gutentagme']
 "NERDTree
 let NERDTreeShowLineNumbers=1
 " airline
@@ -98,6 +99,8 @@ let g:vim_markdown_conceal = 0
 au BufRead,BufNewFile */tasks/*.y*ml set filetype=yaml.ansible
 " vimwiki conceal
 let g:vimwiki_conceallevel = 0
+" vimwiki allow for folding
+let g:vimwiki_folding = 'list'
 " LaTeX preview with mupdf
 let g:livepreview_previewer='mupdf'
 " Color hex codes
@@ -167,6 +170,7 @@ nnoremap <leader>k Hzb
 nnoremap <leader>h :bp<CR>
 nnoremap <leader>l :bn<CR>
 nnoremap <leader>b :Black<CR>
+nnoremap <leader>m ggVG!markflow<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>t :TlistToggle<CR>
 nnoremap <leader>f :lopen<CR>
