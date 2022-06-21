@@ -35,3 +35,15 @@ function fd_decide {
         echo "Need to install some sort of fd"
     fi
 }
+
+function mono {
+        set -x
+        basename=$(basename "$1")
+        filename="${basename%.*}"
+        extension="${basename##*.}"
+
+        ffmpeg -i "$1" -codec:v copy -af pan="mono| c0=FR" "$filename-mono.$extension"
+        set +x
+}
+
+alias tomono=mono
