@@ -54,9 +54,6 @@ export IDF_PATH=~/esp/esp-idf
 # Add poetry to path
 export PATH="$HOME/.poetry/bin:$PATH"
 
-# Pyenv
-eval "$(pyenv init -)"
-
 # vimwiki
 export VIMWIKI_MARKDOWN_EXTENSIONS="toc"
 
@@ -69,6 +66,7 @@ unset file
 # Use this file for tasks/reminders/etc.
 [ -e ~/.motd ] && cat ~/.motd
 
+# pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
