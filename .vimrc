@@ -100,7 +100,7 @@ au BufRead,BufNewFile */tasks/*.y*ml set filetype=yaml.ansible
 " vimwiki conceal
 let g:vimwiki_conceallevel = 0
 " vimwiki allow for folding
-let g:vimwiki_folding = 'list'
+" let g:vimwiki_folding = 'list'
 " LaTeX preview with mupdf
 let g:livepreview_previewer='mupdf'
 " Color hex codes
@@ -171,6 +171,7 @@ nnoremap <leader>h :bp<CR>
 nnoremap <leader>l :bn<CR>
 nnoremap <leader>b :Black<CR>
 nnoremap <leader>m ggVG!markflow<CR>
+nnoremap <leader>q gg!Gjq<CR>''
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>t :TlistToggle<CR>
 nnoremap <leader>f :lopen<CR>

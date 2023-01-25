@@ -44,3 +44,4 @@
 	useConfigOnly = true
 [init]
 	defaultBranch = main
+	email = silaszehnder@gmail.com

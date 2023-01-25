@@ -36,6 +36,16 @@ function fd_decide {
     fi
 }
 
+function git_grep {
+    _excludes=":!.pnp.cjs"
+    _insensitive=""
+    if [[ $1 == "-i" ]]; then
+        _insensitive=$1
+        shift 1
+    fi
+    git grep ${_insensitive} $1 -- ${@:2} ${_excludes}
+}
+
 function mono {
         set -x
         basename=$(basename "$1")
