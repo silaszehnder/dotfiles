@@ -11,14 +11,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-" code completion and formatting
+" Code completion and formatting
+" Need to `pip install jedi` for this to work!
 Plugin 'maralla/completor.vim'
 " Asynchronous Lint Engine
 Plugin 'dense-analysis/ale'
 " Run flake8 on python files
 Plugin 'nvie/vim-flake8'
-" Python black plugin
-Plugin 'psf/black'
 " File directory traverser
 Plugin 'scrooloose/nerdtree'
 " Adds useful info in a status bar at the bottom of the window
@@ -71,6 +70,7 @@ set showcmd
 
 syntax enable "enables syntax colors
 set t_Co=256
+set termguicolors
 
 set background=dark
 colorscheme onedark
@@ -89,8 +89,6 @@ let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1
 " Taglist
 let Tlist_GainFocus_On_ToggleOpen = 1
-" Completor
-let g:completor_python_binary = '/usr/local/bin/python3'
 " flake8 autorun on saving py file
 autocmd BufWritePost *.py call flake8#Flake8()
 " vim-polyglot/markdown
@@ -169,8 +167,10 @@ nnoremap <leader>j Lzt
 nnoremap <leader>k Hzb
 nnoremap <leader>h :bp<CR>
 nnoremap <leader>l :bn<CR>
-nnoremap <leader>b :Black<CR>
-nnoremap <leader>m ggVG!markflow<CR>
+" black.vim does some weird stuff with a venv that I couldn't get to target
+" my pyenv-managed python, so let's do it ourselves
+nnoremap <leader>b gg!Gblack -q - < %:p<CR>''
+nnoremap <leader>m gg!Gmarkflow<CR>''
 nnoremap <leader>q gg!Gjq<CR>''
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>t :TlistToggle<CR>
