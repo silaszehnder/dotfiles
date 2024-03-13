@@ -1,23 +1,60 @@
 RESET="\[\033[0m\]"
+BRED="\[\033[1;31m\]"
 RED="\[\033[0;31m\]"
+GREEN="\[\033[0;32m\]"
+YELLOW="\[\033[0;33m\]"
+BYELLOW="\[\033[1;33m\]"
+CYAN="\[\033[0;36m\]"
 
-function parse_git_branch() {
-    PS_BRANCH=''
-	if [ -d .svn ]; then
-        PS_BRANCH="(svn r$(svn info|awk '/Revision/{print $2}'))"
-        return
-    elif [ -f _FOSSIL_ -o -f .fslckout ]; then
-        PS_BRANCH="(fossil $(fossil status|awk '/tags/{print $2}')) "
-        return
+PROMPT_COMMAND=_prompt_cmd
+
+_prompt_cmd() {
+    # parse exit code
+    _cmd_exit="$?"
+    _exit_pre="$GREEN("
+    _exit_post=")$RESET"
+    if [ $_cmd_exit != 0 ]; then
+        _exit_pre="$BRED("
     fi
-        ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-        PS_BRANCH="(git ${ref#refs/heads/}) "
+
+    _ps_exit="$_exit_pre$_cmd_exit$_exit_post"
+
+    # parse git branch
+    _ps_branch=''
+    if [ -d .svn ]; then
+        _ps_branch="(svn r$(svn info|awk '/Revision/{print $2}'))"
+    elif [ -f _FOSSIL_ -o -f .fslckout ]; then
+        _ps_branch="(fossil $(fossil status|awk '/tags/{print $2}')) "
+    fi
+        ref=$(git symbolic-ref HEAD 2> /dev/null)
+        if [[ -z $ref ]]; then
+            _ps_branch=""
+        else
+            _ps_branch="(git ${ref#refs/heads/}) "
+        fi
+
+    # parse virtual_env
+    _virtual_env_info=''
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        # Strip out the path and just leave the env name
+        venv="${VIRTUAL_ENV##*/}"
+    else
+        # In case you don't have one activated
+        venv=''
+    fi
+    [[ -n "$venv" ]] && _virtual_env_info="$BYELLOW($venv) $RESET"
+
+    # PS1
+    PS1="$_ps_exit "
+    PS1+="$_virtual_env_info"
+    PS1+="$CYAN\u$RESET"
+    PS1+="@"
+    PS1+="$GREEN\t$RESET"
+    PS1+=":"
+    PS1+="$YELLOW\w$RESET "
+    PS1+="$RED$_ps_branch\n$RESET\$ "
 }
 
-PROMPT_COMMAND=parse_git_branch
-PS_GIT="$RED\$PS_BRANCH"
-
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\t:\[\033[33;1m\]\w\[\033[m\] ${PS_GIT}\n${RESET}\$ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
