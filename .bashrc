@@ -87,6 +87,9 @@ export PATH=~/.local/bin:$PATH
 # Add local go bins to PATH
 export PATH=$PATH:/usr/local/go/bin
 
+# Add rust bins to PATH
+export PATH=$PATH:~/.cargo/bin
+
 # Add esp32 toolchain to path
 export PATH="$PATH:$HOME/esp/xtensa-esp32-elf/bin"
 export IDF_PATH=~/esp/esp-idf
