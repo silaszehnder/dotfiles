@@ -1,0 +1,9 @@
+#!/bin/bash
+# Convert an asciinema cast to mp4. Also, generate an intermediate gif by default.
+
+agg_out_file=${1%.*}.gif
+ffmpeg_out_file=${1%.*}.mp4
+
+agg $1 $agg_out_file
+ffmpeg -i $agg_out_file -movflags faststart -pix_fmt yuv420p -vf scale=3000:-2 $ffmpeg_out_file
+
