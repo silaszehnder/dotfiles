@@ -72,6 +72,9 @@ if [ $(uname) == 'Darwin' ]; then
     export BASH_SILENCE_DEPRECATION_WARNING=1
 fi
 
+# Prepend `history` entries with a timestamp
+export HISTTIMEFORMAT="%F %T "
+
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
