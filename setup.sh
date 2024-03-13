@@ -37,6 +37,13 @@ if [[ -n $(echo $XDG_DATA_DIRS | grep -o gnome) ]]; then
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/denysdovhan/gnome-terminal-one/master/one-dark.sh)"
 fi
 
+# Instant dock appear/hide
+if [ $(uname) == 'Darwin' ]; then
+    defaults write com.apple.dock autohide-time-modifier -int 0
+    defaults write com.apple.Dock autohide-delay -float 0
+    killall Dock
+fi
+
 source ~/.bashrc
 
 set +x
