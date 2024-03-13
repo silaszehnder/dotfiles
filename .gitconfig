@@ -1,47 +1,42 @@
 [core]
-	editor = vim
-	fsmonitor = true
-	untrackedcache = true
+    editor = vim
+    fsmonitor = true
+    untrackedcache = true
 
 [alias]
-	branch-name = "!git rev-parse --abbrev-ref HEAD"
-	pullup = pull --rebase upstream master
-	pull-upstream = "!git pull upstream master"
-	force-pull-upstream = "!git fetch upstream; git reset --hard upstream/master"
-	co = checkout
-	glog = log --graph --all --oneline --decorate
-	unadd = reset HEAD
-	uncommit = reset --soft HEAD~1
-	amend = commit --amend --no-edit --no-verify
-	publish = "!git push -u origin $(git branch-name)"
-	unpublish = "!git push origin :$(git branch-name)"
-	rebase-branch = "!git rebase -i `git merge-base master HEAD`"
-	topic-start = "!branch=$1; git checkout master; git pull-upstream; git checkout -b \"$branch\""
-	topic-pull = "!branch=$(git branch-name); git checkout master; git pull-upstream; git checkout \"$branch\"; git rebase master"
-	topic-push = "!branch=$(git branch-name); git push -u origin \"$branch\""
-	day = !"git log --reverse --branches --since=$(if [[ "Mon" == "$(date +%a)" ]]; then echo "last friday"; else echo "yesterday"; fi) --author=$(git config --get user.email) --format=format:'%C(cyan) %ad %C(yellow)%h %Creset %s %Cgreen%d' --date=local"
-	week = !"git log --reverse master --since='last friday' --author=$(git config --get user.email) --format=format:'%C(cyan) %ad %C(yellow)%h %Creset %s %Cgreen%d' --date=local"
+    amend = commit --amend --no-edit --no-verify
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    co = checkout
+    force-pull-upstream = "!git fetch upstream; git reset --hard upstream/master"
+    glog = log --graph --all --oneline --decorate
+    rebase-branch = "!git rebase -i `git merge-base master HEAD`"
+    topic-start = "!branch=$1; git checkout master; git pull-upstream; git checkout -b \"$branch\""
+    topic-pull = "!branch=$(git branch-name); git checkout master; git pull-upstream; git checkout \"$branch\"; git rebase master"
+    topic-push = "!branch=$(git branch-name); git push -u origin \"$branch\""
+    day = !"git log --reverse --branches --since=$(if [[ "Mon" == "$(date +%a)" ]]; then echo "last friday"; else echo "yesterday"; fi) --author=$(git config --get user.email) --format=format:'%C(cyan) %ad %C(yellow)%h %Creset %s %Cgreen%d' --date=local"
+    week = !"git log --reverse master --since='last friday' --author=$(git config --get user.email) --format=format:'%C(cyan) %ad %C(yellow)%h %Creset %s %Cgreen%d' --date=local"
+    vdiff = difftool --tool=vimdiff
 
 [branch]
-	autoSetupMerge = always
-	autoSetupRebase = always
+    autoSetupMerge = always
+    autoSetupRebase = always
 
 [diff]
-	algorithm = histogram
+    algorithm = histogram
 
 [log]
-	follow = true
+    follow = true
 
 [push]
-	default = current
+    default = current
 
 [rebase]
-	autosquash = true
+    autosquash = true
 
 [remote "origin"]
-	prune = true
+    prune = true
 [user]
-	useConfigOnly = true
+    useConfigOnly = true
 [init]
-	defaultBranch = main
-	email = silaszehnder@gmail.com
+    defaultBranch = main
+    email = silaszehnder@gmail.com
