@@ -6,3 +6,5 @@
 tag
 tags
 .scripts/playlist-link.txt
+.scripts/logs/*
+.scripts/rclone-backup
