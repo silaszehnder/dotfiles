@@ -5,6 +5,9 @@ alias evrc="vim $HOME/.vimrc"
 alias fd=fd_decide
 alias ls="ls -GF"
 alias sbrc="source ~/.bashrc"
+alias yqblank=yq_preserve_blanks
+alias tomono=mono
+alias fr=find_replace
 
 # Git
 
@@ -56,4 +59,19 @@ function mono {
         set +x
 }
 
-alias tomono=mono
+function yq_preserve_blanks() {
+    if [[ -z $1 || -z $2 ]]; then
+        echo "usage: yq <pattern> <file>"
+        return
+    fi
+    yq "$1" "$2" | diff -B "$2" - | patch "$2" -
+}
+
+function find_replace() {
+    if [[ -z $1 || -z $2 ]]; then
+        echo "usage: fr <find_str> <replace_str>"
+        return
+    fi
+    find ./ -type f -exec sed -i '' -e 's/$1/$2/g' {} \;
+}
+

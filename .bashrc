@@ -97,6 +97,8 @@ export IDF_PATH=~/esp/esp-idf
 # Add poetry to path
 export PATH="$HOME/.poetry/bin:$PATH"
 
+export PATH="/Library/TeX/texbin:$PATH"
+
 # vimwiki
 export VIMWIKI_MARKDOWN_EXTENSIONS="toc"
 
@@ -107,7 +109,7 @@ done
 unset file
 
 # Use this file for tasks/reminders/etc.
-[ -e ~/.motd ] && cat ~/.motd
+# [ -e ~/.motd ] && cat ~/.motd
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -122,3 +124,4 @@ if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integr
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. "$HOME/.cargo/env"
