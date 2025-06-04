@@ -3,6 +3,8 @@
 .ssh/*
 .vim/black/*
 .vim/bundle/*
+.vim/.netrwhist
+.vim/copilot*
 tag
 tags
 .scripts/playlist-link.txt
