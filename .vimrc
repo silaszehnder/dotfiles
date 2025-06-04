@@ -47,6 +47,7 @@ Plugin 'glench/vim-jinja2-syntax'
 Plugin 'sheerun/vim-polyglot'
 " clang-format
 " Plugin 'rhysd/vim-clang-format'
+Plugin 'ggml-org/llama.vim'
 
 call vundle#end()
 filetype plugin indent on "enable indents
@@ -93,14 +94,17 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 autocmd BufWritePost *.py call flake8#Flake8()
 " vim-polyglot/markdown
 let g:vim_markdown_conceal = 0
+" vim-latex-live-preview
+" mac
+let g:livepreview_previewer = 'open -a Preview'
+" linux
+" let g:livepreview_previewer = 'xreader'
 " vim-polyglot/ansible-vim
 au BufRead,BufNewFile */tasks/*.y*ml set filetype=yaml.ansible
 " vimwiki conceal
 let g:vimwiki_conceallevel = 0
 " vimwiki allow for folding
 " let g:vimwiki_folding = 'list'
-" LaTeX preview with mupdf
-let g:livepreview_previewer='mupdf'
 " Color hex codes
 let g:colorizer_auto_filetype='css,html'
 " Change notetaking to md

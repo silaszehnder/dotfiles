@@ -11,4 +11,4 @@ _music_dir=$HOME/Music/yt-music
 _archive_file=$_music_dir/music-playlist.txt
 
 
-youtube-dl --extract-audio --download-archive $_archive_file --audio-format mp3 $_playlist_link -o "$_music_dir/%(title)s.%(ext)s"
+yt-dlp --verbose --extract-audio --download-archive $_archive_file --audio-format mp3 $_playlist_link -o "$_music_dir/%(title)s.%(ext)s"
